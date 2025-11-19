@@ -14,8 +14,8 @@ class Env(environ.Env):
         cls,
         json_file: Path = None,  # noqa: RUF013 # pyright: ignore[reportArgumentType]
         *,
-        key_handler: callable = lambda x: x,
-        value_handler: callable = lambda x: x,
+        key_handler: callable = lambda x: x,  # pyright: ignore[reportGeneralTypeIssues]
+        value_handler: callable = lambda x: x,  # pyright: ignore[reportGeneralTypeIssues]
         **overrides,
     ):
         """
@@ -56,9 +56,9 @@ if READ_DOT_ENV_FILE:
     env.read_env(Path(ENV_DIR) / ".secrets")
 
 # For production with parameter store
-READ_JSON_FILE = env.bool("DJANGO_READ_JSON_FILE", default=False)
+READ_JSON_FILE = env.bool("DJANGO_READ_JSON_FILE", default=False)  # type: ignore[call-overload]
 if READ_JSON_FILE or (BASE_DIR / ".env.json").is_file():
-    env.read_json(
+    env.read_json(  # pyright: ignore[reportAttributeAccessIssue]
         BASE_DIR / ".env.json",
         # Replacing the prefix
         key_handler=lambda x: x.replace("/sdm_platform/", "", 1),
