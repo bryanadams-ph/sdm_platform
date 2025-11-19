@@ -43,7 +43,7 @@ class Env(environ.Env):
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # sdm_platform/
 APPS_DIR = BASE_DIR / "sdm_platform"
-env = environ.Env()
+env = Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)  # type: ignore[call-overload]
 if READ_DOT_ENV_FILE:
@@ -58,7 +58,7 @@ if READ_DOT_ENV_FILE:
 # For production with parameter store
 READ_JSON_FILE = env.bool("DJANGO_READ_JSON_FILE", default=False)  # type: ignore[call-overload]
 if READ_JSON_FILE or (BASE_DIR / ".env.json").is_file():
-    env.read_json(  # pyright: ignore[reportAttributeAccessIssue]
+    env.read_json(
         BASE_DIR / ".env.json",
         # Replacing the prefix
         key_handler=lambda x: x.replace("/sdm_platform/", "", 1),
