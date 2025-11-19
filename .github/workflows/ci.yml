@@ -85,7 +85,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         if: |
           github.event_name == 'push'
-          && (github.ref == 'refs/heads/main' || github.head_ref == 'refs/heads/master')
+          && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -94,7 +94,10 @@ jobs:
       # AWS CLI Docs: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-create-cli.html
       - name: Deploy to CodeDeploy
         # success() checks if the previous job was canceled or not
-        if: ${{ success() }}
+        if: |
+          success()
+          && github.event_name == 'push'
+          && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         env:
           DEPLOYMENT_GROUP: ${{ secrets.AWS_CODEDEPLOY_DEPLOYMENT_GROUP }}
           DEPLOY_APP_NAME: ${{ secrets.AWS_CODEDEPLOY_APPLICATION_NAME }}
