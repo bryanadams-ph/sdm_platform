@@ -11,7 +11,7 @@ PARAMETER_STORE_PREFIX="/sdm_platform/"
 # -------------------------------------------------------------------------------------
 # Grabbing our environment variables from Parameter Store and storing it in a JSON file
 echo $(aws ssm get-parameters-by-path --with-decryption --region us-east-2 \
---path "${PARAMETER_STORE_PREFIX}") > /app/.env.json
+--path "${PARAMETER_STORE_PREFIX}") > /home/ubuntu/.env.json
 
 # -------------------------------------------------------------------------------------
 
