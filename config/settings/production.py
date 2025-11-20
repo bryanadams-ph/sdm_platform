@@ -19,7 +19,13 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["perspicacioushealth.com"])  # type: ignore[call-overload]
+ALLOWED_HOSTS = env.list(
+    "DJANGO_ALLOWED_HOSTS",
+    default=[  # pyright: ignore[reportArgumentType]
+        "perspicacioushealth.com",
+        "sdm-platform-dev.us-east-2.elasticbeanstalk.com",
+    ],
+)  # type: ignore[call-overload]
 
 # DATABASES
 # ------------------------------------------------------------------------------
