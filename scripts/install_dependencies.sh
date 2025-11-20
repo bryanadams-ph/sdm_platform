@@ -7,6 +7,7 @@ sudo apt -y upgrade
 cd /home/ubuntu
 # AWS CLI needed to get parameters
 sudo snap install aws-cli --classic
+sudo snap install postgresql
 
 # Installing NGINX, our reverse buffering proxy
 # ------------------------------------------------------------------------------------

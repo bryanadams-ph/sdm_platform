@@ -21,6 +21,7 @@ echo $(aws ssm get-parameters-by-path --with-decryption --region us-east-2 \
 
 # source venv/bin/activate
 export DJANGO_SETTINGS_MODULE="config.settings.production"
+export DJANGO_READ_DOT_ENV_FILE=0
 
 # Single server running both celery and web server
 # -------------------------------------------------------------------------------------
