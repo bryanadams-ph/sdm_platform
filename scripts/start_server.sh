@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /app/
+cd /home/ubuntu
 
 # We're doing everything by path (i.e. glob) so make sure you have
 # the slash at the beginning and end of the prefix!

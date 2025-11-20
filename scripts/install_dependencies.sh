@@ -3,8 +3,8 @@ sudo apt update
 sudo apt -y upgrade
 
 # Destination folder
-mkdir /app/
-cd /app/
+#mkdir /app/
+cd /home/ubuntu
 # AWS CLI needed to get parameters
 sudo snap install aws-cli --classic
 
